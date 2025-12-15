@@ -1,0 +1,10 @@
+services:
+  mysql:
+    image: 'mysql:9.5.0'
+    environment:
+      - 'MYSQL_DATABASE=dog_training_tracker'
+      - 'MYSQL_PASSWORD=user'
+      - 'MYSQL_ROOT_PASSWORD=admin'
+      - 'MYSQL_USER=user'
+    ports:
+      - '3306:3306'
