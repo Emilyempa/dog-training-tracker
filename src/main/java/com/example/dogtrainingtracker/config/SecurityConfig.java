@@ -21,7 +21,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated() // everything else needs login
                 )
                 .formLogin(form -> form
-                        .defaultSuccessUrl("/api/dogs", true)
+                        .defaultSuccessUrl("/dogs", true)
                         .permitAll()//
                 );
 

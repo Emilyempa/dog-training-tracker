@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${dog.name}">Dog Details</title>
+</head>
+<body>
+<h1 th:text="${dog.name}"></h1>
+<p>Breed: <span th:text="${dog.breed}"></span></p>
+<p>Birthdate: <span th:text="${dog.birthdate}"></span></p>
+<p>Owner: <span th:text="${dog.ownerUsername} ?: 'okänd'"></span></p>
+</body>
+</html>
