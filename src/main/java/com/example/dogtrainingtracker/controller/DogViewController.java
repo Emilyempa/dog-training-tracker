@@ -1,7 +1,9 @@
 package com.example.dogtrainingtracker.controller;
 
 import com.example.dogtrainingtracker.dto.DogResponseDTO;
+import com.example.dogtrainingtracker.dto.DogTrainingResponseDTO;
 import com.example.dogtrainingtracker.service.DogService;
+import com.example.dogtrainingtracker.service.DogTrainingService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +18,11 @@ import java.util.List;
 public class DogViewController {
 
     private final DogService dogService;
+    private final DogTrainingService dogTrainingService;
 
-    public DogViewController(DogService dogService) {
+    public DogViewController(DogService dogService, DogTrainingService dogTrainingService) {
         this.dogService = dogService;
+        this.dogTrainingService = dogTrainingService;
     }
 
     @GetMapping
@@ -31,8 +35,12 @@ public class DogViewController {
     @GetMapping("/{id}")
     public String dogDetails(@PathVariable Integer id, Model model, Authentication auth) {
         DogResponseDTO dog = dogService.getDogById(id, auth);
+        List<DogTrainingResponseDTO> trainings = dogTrainingService.getTrainingsByDogId(id, auth);
+
         model.addAttribute("dog", dog);
-        return "dog-details"; // points at dog-details.html
+        model.addAttribute("trainings", trainings);
+
+        return "dog-details"; // points to dog-details.html
     }
 }
 

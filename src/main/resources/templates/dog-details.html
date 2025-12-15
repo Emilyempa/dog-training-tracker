@@ -1,12 +1,34 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="sv" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="${dog.name}">Dog Details</title>
+    <title th:text="${dog.name}">Hund Detaljer</title>
 </head>
 <body>
-<h1 th:text="${dog.name}"></h1>
-<p>Breed: <span th:text="${dog.breed}"></span></p>
-<p>Birthdate: <span th:text="${dog.birthdate}"></span></p>
-<p>Owner: <span th:text="${dog.ownerUsername} ?: 'okänd'"></span></p>
+<h1 th:text="${dog.name} ?: 'Hund utan namn'"></h1>
+<p>Ras: <span th:text="${dog.breed}"></span></p>
+<p>Födelsedatum: <span th:text="${dog.birthdate}"></span></p>
+<p>Ägare: <span th:text="${dog.ownerUsername} ?: 'okänd'"></span></p>
+
+<h2>Träningstillfällen</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Aktivitet</th>
+        <th>Plats</th>
+        <th>Datum</th>
+        <th>Längd (min)</th>
+        <th>Anteckningar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="training : ${trainings}">
+        <td th:text="${training.activity}"></td>
+        <td th:text="${training.location}"></td>
+        <td th:text="${training.trainingDate}"></td>
+        <td th:text="${training.durationMinutes}"></td>
+        <td th:text="${training.notes}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
