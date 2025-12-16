@@ -4,12 +4,60 @@
     <title th:text="${dog.name}">Hund Detaljer</title>
 </head>
 <body>
+
 <h1 th:text="${dog.name} ?: 'Hund utan namn'"></h1>
 <p>Ras: <span th:text="${dog.breed}"></span></p>
 <p>Födelsedatum: <span th:text="${dog.birthdate}"></span></p>
 <p>Ägare: <span th:text="${dog.ownerUsername} ?: 'okänd'"></span></p>
 
-<h2>Träningstillfällen</h2>
+<div th:if="${successMessage}">
+    <p th:text="${successMessage}"></p>
+</div>
+
+<h2>Lägg till nytt träningstillfälle</h2>
+
+<form th:action="@{/dogs/{dogId}/trainings(dogId=${dog.id})}"
+      th:object="${trainingForm}"
+      method="post">
+
+    <div>
+        <label>Aktivitet</label>
+        <input type="text" th:field="*{activity}">
+        <div th:errors="*{activity}"></div>
+    </div>
+
+    <div>
+        <label>Plats</label>
+        <input type="text" th:field="*{location}">
+        <div th:errors="*{location}"></div>
+    </div>
+
+    <div>
+        <label>Datum</label>
+        <input type="date" th:field="*{trainingDate}">
+        <div th:errors="*{trainingDate}"></div>
+    </div>
+
+    <div>
+        <label>Längd (min)</label>
+        <input type="number" th:field="*{durationMinutes}">
+        <div th:errors="*{durationMinutes}"></div>
+    </div>
+
+    <div>
+        <label>Anteckningar</label>
+        <textarea th:field="*{notes}"></textarea>
+    </div>
+
+    <button type="submit">Spara träning</button>
+</form>
+
+<div th:if="${successMessage}">
+    <p th:text="${successMessage}"></p>
+</div>
+
+<h3>Träningstillfällen</h3>
+
 <table>
     <thead>
     <tr>
@@ -18,6 +66,7 @@
         <th>Datum</th>
         <th>Längd (min)</th>
         <th>Anteckningar</th>
+        <th>Åtgärder</th>
     </tr>
     </thead>
     <tbody>
@@ -27,8 +76,17 @@
         <td th:text="${training.trainingDate}"></td>
         <td th:text="${training.durationMinutes}"></td>
         <td th:text="${training.notes}"></td>
+        <td>
+            <form th:action="@{/dogs/{dogId}/trainings/{trainingId}/delete(
+                    dogId=${dog.id},
+                    trainingId=${training.id})}"
+                  method="post">
+                <button type="submit">Radera</button>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>
+
 </body>
 </html>
