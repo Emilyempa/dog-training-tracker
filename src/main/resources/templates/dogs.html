@@ -2,8 +2,9 @@
 <html lang="sv" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Dogs</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body>
+<body class="dogs-page">
 <h1>Mina Hundar</h1>
 <ul>
     <li th:each="dog : ${dogs}">
