@@ -79,6 +79,22 @@ All methods use `Authentication` to ensure data is retrieved for the correct use
     - `POST /api/dogs/{dogId}/trainings`
     - `POST /api/dogtraining`
 
+## Screenshots
+
+Here are some screenshots of the Dog Training Application:
+
+Dog list view
+
+![Dogs list view](/screenshots/dogs-list-view.jpeg)
+
+Dog details view
+
+![Dog details view](/screenshots/dog-details.jpeg)
+
+Here is a screenshot of how to test the application in Postman:
+
+![POST in Postman ](/screenshots/postman.png)
+
 
 ## TESTS
 Testing of:
